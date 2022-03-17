@@ -14,4 +14,8 @@
     <string name="error_no_data">"No data found."</string>
     <string name="button_ok">Ok</string>
 
+    <string name="menu_actions">Actions</string>
+    <string name="menu_shopping">Shopping</string>
+    <string name="menu_settings">Settings</string>
+
 </resources>

@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:startDestination="@id/action_list"
-    android:id="@+id/app_graph">
+    android:id="@+id/action_graph">
+
+    <action
+        android:id="@+id/action_global_shopping"
+        app:destination="@id/shopping_graph"
+        app:launchSingleTop="true"/>
 
     <fragment
         android:id="@+id/action_list"
@@ -21,4 +26,8 @@
         android:label="Action Details"
         tools:layout="@layout/fragment_action_details">
     </fragment>
+
+    <include android:id="@+id/shopping_graph"
+        app:graph="@navigation/shopping_graph"/>
+
 </navigation>
