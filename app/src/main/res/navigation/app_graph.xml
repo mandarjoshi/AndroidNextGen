@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/action_list"
+    android:id="@+id/app_graph">
+
+    <fragment
+        android:id="@+id/action_list"
+        android:name="com.mandarjoshi.androidnextgen.ui.ActionFragment"
+        android:label="Action List"
+        tools:layout="@layout/fragment_action_list">
+        <action
+            android:id="@+id/navigate_to_action_details"
+            app:destination="@id/action_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/action_details"
+        android:name="com.mandarjoshi.androidnextgen.ui.ActionDetailsFragment"
+        android:label="Action Details"
+        tools:layout="@layout/fragment_action_details">
+    </fragment>
+</navigation>
