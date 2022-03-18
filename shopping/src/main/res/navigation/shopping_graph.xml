@@ -9,5 +9,14 @@
         android:id="@+id/shoppingFragment"
         android:name="com.mandarjoshi.androidnextgen.shopping.ShoppingFragment"
         android:label="fragment_shopping"
-        tools:layout="@layout/fragment_shopping" />
+        tools:layout="@layout/fragment_shopping" >
+        <action
+            android:id="@+id/action_shoppingFragment_to_shoppingDetailsFragment"
+            app:destination="@id/shoppingDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingDetailsFragment"
+        android:name="com.mandarjoshi.androidnextgen.shopping.ShoppingDetailsFragment"
+        android:label="fragment_shopping_details"
+        tools:layout="@layout/fragment_shopping_details" />
 </navigation>

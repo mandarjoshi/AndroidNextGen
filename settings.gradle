@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "AndroidNextGen"
 include ':app'
 include ':shopping'
+include ':settings'

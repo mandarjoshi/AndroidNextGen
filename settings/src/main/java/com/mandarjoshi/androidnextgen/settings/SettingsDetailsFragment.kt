@@ -1,12 +1,10 @@
-package com.mandarjoshi.androidnextgen.shopping
+package com.mandarjoshi.androidnextgen.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +13,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ShoppingFragment.newInstance] factory method to
+ * Use the [SettingsDetailsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ShoppingFragment : Fragment() {
+class SettingsDetailsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,11 +34,7 @@ class ShoppingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_shopping, container, false)
-        view.findViewById<Button>(R.id.to_shopping_details).setOnClickListener {
-            findNavController().navigate(R.id.action_shoppingFragment_to_shoppingDetailsFragment)
-        }
-        return view
+        return inflater.inflate(R.layout.fragment_settings_details, container, false)
     }
 
     companion object {
@@ -50,12 +44,12 @@ class ShoppingFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ShoppingFragment.
+         * @return A new instance of fragment SettingsDetailsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ShoppingFragment().apply {
+            SettingsDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShoppingFragment">
+    tools:context=".SettingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -11,15 +11,14 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_marginTop="64dp"
-        android:text="@string/shopping_main_fragment_fragment" />
+        android:text="@string/settings_main_fragment_fragment" />
 
     <Button
-        android:id="@+id/to_shopping_details"
+        android:id="@+id/to_settings_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shopping Details"
+        android:text="Settings Details"
         android:layout_marginTop="64dp"/>
-
 
 
 </FrameLayout>

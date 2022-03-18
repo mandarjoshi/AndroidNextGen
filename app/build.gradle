@@ -63,6 +63,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     implementation project(':shopping')
+    implementation project(':settings')
 
     api deps.squareup.retrofit
     api deps.squareup.retrofitRx

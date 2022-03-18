@@ -12,7 +12,7 @@
         android:title="@string/menu_shopping" />
 
     <item
-        android:id="@+id/account_page_fragment"
+        android:id="@+id/settings_graph"
         android:icon="@drawable/ic_settings"
         android:title="@string/menu_settings"/>
 

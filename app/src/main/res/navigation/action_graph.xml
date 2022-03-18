@@ -27,7 +27,4 @@
         tools:layout="@layout/fragment_action_details">
     </fragment>
 
-    <include android:id="@+id/shopping_graph"
-        app:graph="@navigation/shopping_graph"/>
-
 </navigation>

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.action_list, R.id.shoppingFragment)
+            setOf(R.id.action_list, R.id.shoppingFragment, R.id.settingsFragment)
         )
 
         findViewById<MaterialToolbar>(R.id.toolbar)
