@@ -8,6 +8,8 @@ class HeaderInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request: Request = chain.request()
             .newBuilder()
+            .addHeader("scenario","default")
+            .addHeader("projectName","androidnextgen")
             .build()
         return chain.proceed(request)
     }

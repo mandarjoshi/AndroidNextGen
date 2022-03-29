@@ -10,7 +10,8 @@ buildscript {
             'moshi': '1.12.0',
             'dagger': '2.34',
             'navigation': '2.4.0',
-            'androidx': '1.1.0',
+            'androidx': '1.6.0',
+            'androidx_shortcuts': '1.0.0',
             'junit': '1.14',
             'mockito_kotlin': '2.0.0',
             'kotlinCoroutines': '1.5.2',
@@ -37,8 +38,10 @@ buildscript {
             androidx: [
                     'lifecycleextensions': "android.arch.lifecycle:extensions:${versions.androidx}",
                     'lifecycleviewmodel' : "android.arch.lifecycle:viewmodel:${versions.androidx}",
-                    'lifecyclelivedata': "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleLivedata}"
-
+                    'lifecyclelivedata': "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleLivedata}",
+                    'core': "androidx.core:core:${versions.androidx}",
+                    'core_ktx': "androidx.core:core-ktx:${versions.androidx}",
+                    'core_shortcuts': "androidx.core:core-google-shortcuts:${versions.androidx_shortcuts}"
             ],
             junit: [
                     'junit': "junit:junit:${versions.junit}",
