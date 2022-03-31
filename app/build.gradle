@@ -20,6 +20,14 @@ android {
 
     flavorDimensions "baseUrl"
     productFlavors{
+        prod{
+            dimension "baseUrl"
+            buildConfigField("String","BASE_URL",'"https://ketzcqg270.execute-api.us-east-1.amazonaws.com/dev/"')
+        }
+        mock{
+            dimension "baseUrl"
+            buildConfigField("String","BASE_URL",'"https://ketzcqg270.execute-api.us-east-1.amazonaws.com/dev/"')
+        }
         dev{
             dimension "baseUrl"
             buildConfigField("String","BASE_URL",'"https://ketzcqg270.execute-api.us-east-1.amazonaws.com/dev/"')
@@ -31,7 +39,8 @@ android {
     }
 
     sourceSets {
-        dev.java.srcDir'src/common/java'
+        dev.java.srcDir 'src/common/java'
+        prod.java.srcDir 'src/common/java'
     }
 
     buildTypes {
