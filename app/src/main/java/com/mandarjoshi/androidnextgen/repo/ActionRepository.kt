@@ -12,11 +12,11 @@ open class ActionRepository(private val actionService: ActionService) {
     fun getActionList(): LiveData<Resource<List<Action>?>> {
         return liveData(Dispatchers.IO) {
             emit(Resource.loading())
-            try {
+            //try {
                 emit(Resource.success(data=actionService.getActionList()))
-            }catch (exception: Exception){
-                emit(Resource.error(data=null,message = "Error"))
-            }
+            //}catch (exception: Exception){
+            //    emit(Resource.error(data=null,message = "Error"))
+            //}
         }
     }
 }
