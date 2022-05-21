@@ -13,7 +13,7 @@
     <fragment
         android:id="@+id/action_list"
         android:name="com.mandarjoshi.androidnextgen.ui.ActionFragment"
-        android:label="Action List New"
+        android:label="Action List"
         tools:layout="@layout/fragment_action_list">
         <action
             android:id="@+id/navigate_to_action_details"
