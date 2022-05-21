@@ -1,6 +1,6 @@
 package com.mandarjoshi.androidnextgen.util
 
-data class Resource<out T>(val status: Status,val data: T?,val message: String?) {
+data class Resource<out T>(val status: Status? = null,val data: T?  = null,val message: String? = null) {
     companion object {
         fun <T> success(data: T): Resource<T> =
             Resource(status = Status.SUCCESS, data = data, message = null)

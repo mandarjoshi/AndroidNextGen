@@ -1,16 +1,20 @@
 package com.mandarjoshi.androidnextgen.di
 
+import com.mandarjoshi.androidnextgen.domain.GetActionsUseCase
 import com.mandarjoshi.androidnextgen.repo.ActionService
 import dagger.Module
 import dagger.Provides
 
 import retrofit2.Retrofit
 import com.mandarjoshi.androidnextgen.repo.ActionRepository
+import com.mandarjoshi.androidnextgen.repo.VendorRepository
+import com.mandarjoshi.androidnextgen.repo.VendorService
 import com.mandarjoshi.androidnextgen.viewmodel.ViewModelFactory
 
 
 @Module
 class ApplicationModule {
+
     @Provides
     fun providesActionService(
         retrofit: Retrofit
@@ -19,12 +23,32 @@ class ApplicationModule {
     }
 
     @Provides
+    fun providesVendorService(
+        retrofit: Retrofit
+    ): VendorService {
+        return retrofit.create(VendorService::class.java)
+    }
+
+    @Provides
     fun providesActionRepository(actionService: ActionService): ActionRepository {
         return ActionRepository(actionService)
     }
 
     @Provides
-    fun providesViewModelFactory(actionRepository: ActionRepository): ViewModelFactory {
-        return ViewModelFactory(actionRepository)
+    fun providesVendorRepository(vendorService: VendorService): VendorRepository {
+        return VendorRepository(vendorService)
+    }
+
+    @Provides
+    fun providesGetActionUseCase(
+        actionRepository: ActionRepository,
+        vendorRepository: VendorRepository
+    ): GetActionsUseCase {
+        return GetActionsUseCase(actionRepository, vendorRepository)
+    }
+
+    @Provides
+    fun providesViewModelFactory(actionsUseCase: GetActionsUseCase): ViewModelFactory {
+        return ViewModelFactory(actionsUseCase)
     }
 }

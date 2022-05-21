@@ -15,7 +15,8 @@ buildscript {
             'junit': '1.14',
             'mockito_kotlin': '2.0.0',
             'kotlinCoroutines': '1.5.2',
-            'lifecycleLivedata': '2.2.0'
+            'lifecycleLivedata': '2.2.0',
+            'fragment_version' : '1.4.1'
     ]
     ext.deps = [
             squareup: [
@@ -41,7 +42,8 @@ buildscript {
                     'lifecyclelivedata': "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleLivedata}",
                     'core': "androidx.core:core:${versions.androidx}",
                     'core_ktx': "androidx.core:core-ktx:${versions.androidx}",
-                    'core_shortcuts': "androidx.core:core-google-shortcuts:${versions.androidx_shortcuts}"
+                    'core_shortcuts': "androidx.core:core-google-shortcuts:${versions.androidx_shortcuts}",
+                    'fragment': "androidx.fragment:fragment-testing:${versions.fragment_version}"
             ],
             junit: [
                     'junit': "junit:junit:${versions.junit}",

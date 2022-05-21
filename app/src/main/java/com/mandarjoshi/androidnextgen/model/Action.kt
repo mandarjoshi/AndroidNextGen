@@ -10,5 +10,12 @@ data class Action(
     @Json(name = "date") var date: String,
     @Json(name = "contact_number") var contact_number: String,
     @Json(name = "amount") var amount: String,
-    @Json(name = "rating") var rating: String
+    @Json(name = "rating") var rating: String,
+    @Json(name = "vendor_id") var vendorId: String
+)
+
+@JsonClass(generateAdapter = true)
+data class Vendor(
+    @Json(name = "id") var id: String,
+    @Json(name = "description") var name: String,
 )

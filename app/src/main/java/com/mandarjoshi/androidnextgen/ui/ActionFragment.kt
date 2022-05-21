@@ -1,11 +1,12 @@
 package com.mandarjoshi.androidnextgen.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mandarjoshi.androidnextgen.util.DialogUtil
 
@@ -17,10 +18,10 @@ import com.mandarjoshi.androidnextgen.viewmodel.ViewModelFactory
 import javax.inject.Inject
 import com.mandarjoshi.androidnextgen.AndroidNextGenApplication
 import com.mandarjoshi.androidnextgen.databinding.FragmentActionListBinding
-import com.mandarjoshi.androidnextgen.model.Action
 
-import com.mandarjoshi.androidnextgen.util.Resource
 import com.mandarjoshi.androidnextgen.util.Status
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class ActionFragment : BaseFragment() {
 
@@ -42,8 +43,7 @@ class ActionFragment : BaseFragment() {
 
         binding = FragmentActionListBinding.inflate(inflater, container, false)
         binding.actionList.layoutManager = LinearLayoutManager(context)
-
-        mViewModel.getActionList().observe(this, actionListObserver)
+        observeDataState()
         return binding.root
     }
 
@@ -54,28 +54,30 @@ class ActionFragment : BaseFragment() {
             .navigate(com.mandarjoshi.androidnextgen.R.id.navigate_to_action_details, bundle)
     }
 
-    private val actionListObserver: Observer<Resource<List<Action>?>> =
-        Observer<Resource<List<Action>?>> { list ->
-            when(list.status) {
-                Status.ERROR -> {
-                    hideProgressBar(binding.root)
-                    DialogUtil.getSimpleErrorDialog(requireActivity()).show()
-                }
-                Status.SUCCESS -> {
-                    hideProgressBar(binding.root)
-                    mViewModel.refreshActionList(list)
-                    list.data?.let {
-                        if(it.isEmpty()){
-                            DialogUtil.getNoDataDialog(requireActivity()).show()
-                        } else {
-                            binding.actionList.adapter =
-                                MyActionAdapter(list.data) { id -> navigateToScores(id) }
-                        }
+    private fun observeDataState(){
+        lifecycleScope.launch {
+            mViewModel.uiState.collect {
+                Log.d("mandyjo 100","...end")
+                when(it.status) {
+                    Status.ERROR -> {
+                        hideProgressBar(binding.root)
+                        DialogUtil.getSimpleErrorDialog(requireActivity()).show()
                     }
+                    Status.SUCCESS -> {
+                        hideProgressBar(binding.root)
+                        it.data?.let { data ->
+                            if(data.isEmpty()){
+                                DialogUtil.getNoDataDialog(requireActivity()).show()
+                            } else {
+                                binding.actionList.adapter =
+                                    MyActionAdapter(data) { id -> navigateToScores(id) }
+                            }
+                        }
 
+                    }
+                    else -> showProgressBar(binding.root)
                 }
-                else -> showProgressBar(binding.root)
             }
         }
-
+    }
 }

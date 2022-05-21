@@ -1,28 +1,43 @@
 package com.mandarjoshi.androidnextgen.viewmodel
 
-import com.mandarjoshi.androidnextgen.model.Action
+import android.util.Log
+import androidx.lifecycle.ViewModel
 
-import androidx.lifecycle.*
-import com.mandarjoshi.androidnextgen.repo.ActionRepository
-
+import androidx.lifecycle.viewModelScope
+import com.mandarjoshi.androidnextgen.domain.GetActionsUseCase
 import com.mandarjoshi.androidnextgen.util.Resource
+import kotlinx.coroutines.Dispatchers
 
-private const val BEST_READING_SCORE = 400
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import java.sql.Time
 
-class ActionViewModel(private val actionRepository: ActionRepository) : ViewModel() {
+class ActionViewModel(private val actionsUseCase: GetActionsUseCase) : ViewModel() {
 
-    //since caching is not implemented, it is cached here
-    private var actionList: List<Action>? = null
+    private var _uiState = MutableStateFlow(Resource<List<ActionUiState>>())
+    val uiState  = _uiState.asStateFlow()
+    private var job: Job? = null
+    init {
+        fetchActionList()
+    }
 
-    fun getActionList(): LiveData<Resource<List<Action>?>> {
-        if (actionList == null) {
-            return actionRepository.getActionList()
+    private fun fetchActionList() {
+        Log.d("mandyjo 1","start...")
+        _uiState.update {
+            Resource.loading()
         }
-        return liveData { emit(Resource.success(actionList)) }
-    }
 
-    fun refreshActionList(list: Resource<List<Action>?>) {
-        actionList = list.data
+        Log.d("mandyjo 2",Thread.currentThread().name)
+        job?.cancel()
+        job = viewModelScope.launch(Dispatchers.IO) {
+            val actions = actionsUseCase()
+            _uiState.update {
+                Resource.success(actions)
+            }
+            Log.d("mandyjo 3",Thread.currentThread().name)
+        }
     }
-
 }

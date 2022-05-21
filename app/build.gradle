@@ -88,6 +88,8 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.4.1-alpha04'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0-alpha05'
 
+    debugImplementation deps.androidx.fragment
+
     annotationProcessor deps.di.daggerCompiler
     kapt deps.di.daggerCompiler
 
